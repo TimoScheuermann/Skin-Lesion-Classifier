@@ -1,0 +1,24 @@
+{
+  "name": "skin-lesion-recogition",
+  "version": "1.0.0",
+  "author": "Timo Scheuermann",
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "post-update": "yarn upgrade --latest"
+  },
+  "dependencies": {
+    "@nuxtjs/style-resources": "^1.0.0",
+    "@tensorflow/tfjs": "^2.7.0",
+    "nuxt": "2.14.7",
+    "nuxt-property-decorator": "^2.8.8",
+    "tccomponents_vue": "^0.5.19"
+  },
+  "devDependencies": {
+    "@nuxt/types": "latest",
+    "@nuxt/typescript-build": "latest"
+  }
+}
