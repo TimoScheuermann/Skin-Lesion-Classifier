@@ -97,9 +97,11 @@ export default class Home extends Vue {
     1: "Basal Cell Carcinoma [bcc]",
     2: "Benign Keratosis [bkl]",
     3: "Dermatofibroma [df]",
-    4: "Melanoma [mel]",
-    5: "Melanocytic Nevi [nv]",
-    6: "Vascular skin lesion [vasc]"
+    4: "Healthy",
+    5: "Melanoma [mel]",
+    6: "No Skin",
+    7: "Melanocytic Nevi [nv]",
+    8: "Vascular skin lesion [vasc]"
   };
 
   public TARGET_DESCRIPTIONS: Record<number, string> = {
@@ -107,13 +109,15 @@ export default class Home extends Vue {
     1: "Der Basalzellenkrebs (Basaliom; Basalzellkarzinom; Epithelioma basocellulare; engl.: basal cell carcinoma, basalioma, basal cell epithelioma) ist eine bösartige Krebserkrankung der Haut, die sich aus Stammzellen im Bereich der Haarfollikel sowie interfollikulär in den basalen Schichten der Epidermis entwickelt.[1] Bevorzugte Lokalisationen sind der Sonne ausgesetzte Gesichtsregionen wie Stirn, Nase oder Ohren. Manchmal wird der Basalzellenkrebs als Abgrenzung zum „schwarzen Hautkrebs“ (Malignes Melanom) auch „heller Hautkrebs“ oder „weißer Hautkrebs“ genannt.",
     2: "Die seborrhoische Keratose (Synonyme: Seborrhoische Warze, Alterswarze, Verruca seborrhoica, Basalzellpapillom) ist der häufigste gutartige Tumor der Haut. Er entwickelt sich meist in der zweiten Lebenshälfte, die Häufigkeit seines Auftretens nimmt mit steigendem Alter zu. Fast alle Menschen entwickeln im Laufe des Lebens eine bis mehrere seborrhoische Keratosen, wobei beide Geschlechter gleich häufig betroffen sind.",
     3: "Ein Dermatofibrom (Syn.: kutanes fibröses Histiozytom, Fibroma simplex, Fibroma durum, hartes Fibrom) ist ein häufig vorkommender gutartiger Tumor der Haut (Dermis). Die kleine, bis zu einem Zentimeter durchmessende Hautwucherung tritt vorzugshalber an Armen und Beinen sowie am Rumpf auf. Sie besteht aus Ansammlungen von Bindegewebszellen (Fibrohistiocyten) mit dazwischengelagerten Kollagenfaserbündeln.",
-    4: "Das maligne Melanom (von altgriechisch μέλας „schwarz“), auch kurz Melanom, Melano(zyto)blastom oder schwarzer Hautkrebs (engl.: [malignant] melanoma) genannt, ist ein hochgradig bösartiger Tumor der Pigmentzellen (Melanozyten). Er neigt dazu, früh Metastasen über Lymph- und Blutbahnen zu streuen, und ist die am häufigsten tödlich verlaufende Hautkrankheit mit weltweit stark steigender Anzahl an Neuerkrankungen.",
-    5: "Ein Pigmentnävus (manchmal auch: Melanozytennävus oder melanozytärer Nävus) ist eine begrenzte, gutartige Fehlbildung der Haut, die im Gegensatz zu anderen Arten von Nävi aus pigmentbildenden Melanozyten oder verwandten Zelltypen besteht und daher meist eine braune oder bräunliche Farbe aufweist. Es gibt zahlreiche Unterarten von Pigmentnävi.",
-    6: "Vascular skin lesion [vasc]"
+    4: "Gesund",
+    5: "Das maligne Melanom (von altgriechisch μέλας „schwarz“), auch kurz Melanom, Melano(zyto)blastom oder schwarzer Hautkrebs (engl.: [malignant] melanoma) genannt, ist ein hochgradig bösartiger Tumor der Pigmentzellen (Melanozyten). Er neigt dazu, früh Metastasen über Lymph- und Blutbahnen zu streuen, und ist die am häufigsten tödlich verlaufende Hautkrankheit mit weltweit stark steigender Anzahl an Neuerkrankungen.",
+    6: "Kein Hautbild.",
+    7: "Ein Pigmentnävus (manchmal auch: Melanozytennävus oder melanozytärer Nävus) ist eine begrenzte, gutartige Fehlbildung der Haut, die im Gegensatz zu anderen Arten von Nävi aus pigmentbildenden Melanozyten oder verwandten Zelltypen besteht und daher meist eine braune oder bräunliche Farbe aufweist. Es gibt zahlreiche Unterarten von Pigmentnävi.",
+    8: "Vascular skin lesion [vasc]"
   };
 
   async mounted() {
-    const model = await tf.loadLayersModel("models/v1/model.json");
+    const model = await tf.loadLayersModel("models/v2/model.json");
     this.model = model;
     this.reset();
 
