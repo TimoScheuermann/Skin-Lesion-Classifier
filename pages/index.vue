@@ -5,7 +5,7 @@
         <img src="~/assets/logo.svg" alt="" />
       </div>
       <div class="title">Skin Lesion Recogition</div>
-      <div class="version">1.0.0</div>
+      <div class="version">1.0.0/v2</div>
     </div>
 
     <div class="hero">
