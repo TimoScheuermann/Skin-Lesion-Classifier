@@ -5,18 +5,18 @@
         <img src="~/assets/logo.svg" alt="" />
       </div>
       <div class="title">Skin Lesion Recogition</div>
-      <div class="version">1.0.0/v2</div>
+      <div class="version">1.1</div>
     </div>
 
     <div class="hero">
-      <video
+      <!-- <video
         src="https://assets.mixkit.co/videos/preview/mixkit-light-in-the-background-of-a-virtual-3d-database-19630-large.mp4"
         playsinline
         autplay="autplay"
         loop="loop"
         muted="muted"
         ref="video"
-      ></video>
+      ></video> -->
       <div class="title">
         Wähle ein Bild aus
         <div class="select-image">
@@ -25,7 +25,7 @@
             Bild wählen
           </label>
           <input
-            :disabled="!model | loaded | analyzing"
+            :disabled="!modelsLoaded | loaded | analyzing"
             id="image-input"
             type="file"
             @change="fileChanged"
@@ -34,8 +34,37 @@
       </div>
     </div>
 
+    <div class="group">
+      <input
+        type="radio"
+        name="rb"
+        id="rb1"
+        @input="select(2)"
+        :disabled="!modelsLoaded"
+      />
+      <label for="rb1">Model V2</label>
+      <input
+        :disabled="!modelsLoaded"
+        type="radio"
+        name="rb"
+        id="rb2"
+        @input="select(3)"
+      />
+      <label for="rb2">Model V3</label>
+      <input
+        :disabled="!modelsLoaded"
+        checked="checked"
+        type="radio"
+        name="rb"
+        id="rb3"
+        @input="select(4)"
+      />
+      <label for="rb3">Model V4</label>
+    </div>
+
     <div class="content">
-      <p v-if="!src">Warte bis ein Bild ausgewählt wurde...</p>
+      <p v-if="!modelsLoaded">Modelle werden geladen...</p>
+      <p v-else-if="!src">Warte bis ein Bild ausgewählt wurde...</p>
       <div v-else class="analyzer">
         <div class="preview">
           <img :src="src" />
@@ -87,6 +116,10 @@ interface Result {
 @Component
 export default class Home extends Vue {
   private model: null | LayersModel = null;
+  private modelV2: null | LayersModel = null;
+  private modelV3: null | LayersModel = null;
+  private modelV4: null | LayersModel = null;
+  private modelsLoaded: boolean = false;
   private analyzing: boolean = false;
   private analyzed: boolean = false;
   public src = "";
@@ -116,15 +149,27 @@ export default class Home extends Vue {
     8: "Vascular skin lesion [vasc]"
   };
 
-  async mounted() {
-    const model = await tf.loadLayersModel("models/v2/model.json");
-    this.model = model;
+  mounted() {
     this.reset();
+    this.loadModels();
+  }
 
-    (this.$refs.video as HTMLVideoElement).play();
-    setTimeout(() => {
-      (this.$refs.video as HTMLVideoElement).play();
-    }, 1000);
+  public select(v: number) {
+    if (v === 2) {
+      this.model = this.modelV2;
+    } else if (v === 3) {
+      this.model = this.modelV3;
+    } else if (v === 4) {
+      this.model = this.modelV4;
+    }
+  }
+
+  private async loadModels() {
+    this.modelV2 = await tf.loadLayersModel("models/v2/model.json");
+    this.modelV3 = await tf.loadLayersModel("models/v3/model.json");
+    this.modelV4 = await tf.loadLayersModel("models/v4/model.json");
+    this.model = this.modelV4;
+    this.modelsLoaded = true;
   }
 
   public reset() {
