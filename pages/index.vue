@@ -35,7 +35,7 @@
     </div>
 
     <div class="group">
-      <input
+      <!-- <input
         type="radio"
         name="rb"
         id="rb1"
@@ -50,7 +50,7 @@
         id="rb2"
         @input="select(3)"
       />
-      <label for="rb2">Model V3</label>
+      <label for="rb2">Model V3</label> -->
       <input
         :disabled="!modelsLoaded"
         checked="checked"
@@ -60,6 +60,14 @@
         @input="select(4)"
       />
       <label for="rb3">Model V4</label>
+      <input
+        :disabled="!modelsLoaded"
+        type="radio"
+        name="rb"
+        id="rb4"
+        @input="select(6)"
+      />
+      <label for="rb4">Model V6</label>
     </div>
 
     <div class="content">
@@ -119,9 +127,11 @@ export default class Home extends Vue {
   private modelV2: null | LayersModel = null;
   private modelV3: null | LayersModel = null;
   private modelV4: null | LayersModel = null;
+  private modelV6: null | LayersModel = null;
   private modelsLoaded: boolean = false;
   private analyzing: boolean = false;
   private analyzed: boolean = false;
+  private modelV: number = 2;
   public src = "";
   public result: Result[] = [];
 
@@ -161,13 +171,17 @@ export default class Home extends Vue {
       this.model = this.modelV3;
     } else if (v === 4) {
       this.model = this.modelV4;
+    } else if (v === 6) {
+      this.model = this.modelV6;
     }
+    this.modelV = v;
   }
 
   private async loadModels() {
-    this.modelV2 = await tf.loadLayersModel("models/v2/model.json");
-    this.modelV3 = await tf.loadLayersModel("models/v3/model.json");
+    // this.modelV2 = await tf.loadLayersModel("models/v2/model.json");
+    // this.modelV3 = await tf.loadLayersModel("models/v3/model.json");
     this.modelV4 = await tf.loadLayersModel("models/v4/model.json");
+    this.modelV6 = await tf.loadLayersModel("models/v6/model.json");
     this.model = this.modelV4;
     this.modelsLoaded = true;
   }
@@ -208,11 +222,17 @@ export default class Home extends Vue {
             .map((p, i) => {
               return {
                 probability: p,
-                class: this.TARGET_DESCRIPTIONS[i],
-                desc: this.TARGET_CLASSES[i]
+                class: this.TARGET_DESCRIPTIONS[
+                  i + (this.modelV === 6 && i > 5 ? 1 : 0)
+                ],
+                desc: this.TARGET_CLASSES[
+                  i + (this.modelV === 6 && i > 5 ? 1 : 0)
+                ]
               } as Result;
             })
-            .sort((a, b) => b.probability - a.probability)
+            .sort((a, b) => b.probability - a.probability);
+          console.log(this.result);
+          this.result = this.result
             .slice(0, 3)
             .filter(x => x.probability > 0.001);
 
