@@ -135,9 +135,11 @@
             transform="translate(914.12 3274.85)"
           />
         </g>
-        <text @click="goToFAQ()" class="h" transform="translate(90 601)">
-          <tspan x="4" y="11">Du hast Fragen? Klicke hier</tspan>
-        </text>
+        <NuxtLink to="/faq">
+          <text class="h" transform="translate(90 601)">
+            <tspan x="4" y="11">Du hast Fragen? Klicke hier</tspan>
+          </text>
+        </NuxtLink>
       </g>
     </svg>
   </div>
@@ -146,11 +148,7 @@
 import { Vue, Component } from "nuxt-property-decorator";
 
 @Component
-export default class SLCDoctor extends Vue {
-  public goToFAQ(): void {
-    //
-  }
-}
+export default class SLCDoctor extends Vue {}
 </script>
 
 <style>

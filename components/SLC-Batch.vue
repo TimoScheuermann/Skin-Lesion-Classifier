@@ -12,7 +12,7 @@ export default class SLCBatch extends Vue {}
 
 <style>
 .slc-batch {
-  margin-top: 30px;
+  margin-top: calc(30px + env(safe-area-inset-top));
   text-align: center;
 }
 .slc-batch img {

@@ -6,7 +6,7 @@ export default {
       { hid: "description", name: "description", content: "Meta description" }
     ]
   },
-  buildModules: ["@nuxt/typescript-build"],
+  buildModules: ["@nuxt/typescript-build", "@nuxtjs/pwa"],
   styleResources: {
     scss: ["~/css/_variables.scss", "~/css/_mixins.scss"]
   },
@@ -22,5 +22,15 @@ export default {
         return ["script", "style", "font"].includes(type);
       }
     }
+  },
+  pwa: {
+    meta: {
+      mobileAppIOS: true,
+      appleStatusBarStyle: "black-translucent",
+      name: "SL Classifier"
+    }
   }
+  // server: {
+  //   host: "192.168.2.177"
+  // }
 };

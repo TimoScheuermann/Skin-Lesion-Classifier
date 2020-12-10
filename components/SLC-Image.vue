@@ -1,5 +1,10 @@
 <template>
   <div class="slc-image">
+    <NuxtLink to="/">
+      <div class="cross-button">
+        <img src="~assets/etc/cross.svg" alt="" />
+      </div>
+    </NuxtLink>
     <div class="bg">
       <img :src="src" alt="" />
     </div>
@@ -19,6 +24,15 @@ export default class SLCImage extends Vue {
 </script>
 
 <style>
+.cross-button {
+  position: fixed;
+  z-index: 10;
+  top: 40px;
+  left: 5vw;
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+}
 .slc-image {
   position: relative;
   height: 300px;

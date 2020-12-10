@@ -23,3 +23,9 @@ export interface Result {
   probability: number;
   lclass: LesionClass;
 }
+
+export interface SLDescription {
+  name: string;
+  short: string;
+  full: string;
+}
