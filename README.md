@@ -1,1 +1,1 @@
-<img src="https://api.timos.design:3002/newsroom/thumbnail/e51c486dae890235ed2fe2fd6af688e5" />
+<img src="https://api.timos.design:3002/drive/file/0cf423d2fce449af8a474bdf4ac7a126.png" />
