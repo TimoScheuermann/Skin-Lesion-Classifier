@@ -1,34 +1,29 @@
 <template>
   <div class="slc-details">
-    <slc-image />
-    <slc-footer />
-    <div class="center">
-      <NuxtLink to="/classifier">
-        <div class="back-button">
-          <img src="~assets/etc/back.svg" alt="" />
-        </div>
-      </NuxtLink>
+    <div result max-width>
+      <SLCImage />
+      <SLCMenuButton icon="back" to="/classifier" />
+
       <h1>{{ description.name }}</h1>
+      <p>{{ description.description }}</p>
     </div>
-    <div class="content">
-      <p>
-        {{ description.full }}
-      </p>
-    </div>
+
+    <SLCFooter />
   </div>
 </template>
 <script lang="ts">
 import { Vue, Component } from "nuxt-property-decorator";
-import SLCButton from "~/components/SLC-Button.vue";
 import SLCFooter from "~/components/SLC-Footer.vue";
 import SLCImage from "~/components/SLC-Image.vue";
+import SLCMenuButton from "~/components/SLC-MenuButton.vue";
 import { descriptions } from "~/static/descriptions";
-import { LesionClass, SLDescription } from "~/static/interfaces";
+import { LesionClass, SLInformation } from "~/static/interfaces";
 
 @Component({
   components: {
-    "slc-footer": SLCFooter,
-    "slc-image": SLCImage
+    SLCFooter,
+    SLCImage,
+    SLCMenuButton
   }
 })
 export default class SLCDetails extends Vue {
@@ -36,29 +31,32 @@ export default class SLCDetails extends Vue {
     return this.$route.params.lesion as LesionClass;
   }
 
-  get description(): SLDescription {
+  get description(): SLInformation {
     return descriptions[this.lesion];
   }
 }
 </script>
+
 <style>
-.slc-details .center {
+.slc-details p {
   padding: 0 5vw;
-  position: relative;
 }
-.slc-details .back-button {
+
+.slc-classifier .slc-footer {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.slc-classifier .slc-footer::after {
+  content: "";
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 30px;
-  height: 30px;
-  border-radius: 50px;
+  top: 140px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #f5f5f7;
 }
-.slc-details .back-button img {
-  width: inherit;
-  height: inherit;
-}
-.content {
-  padding: 0 5vw;
+
+.slc-classifier .slc-footer img {
+  height: 140px;
 }
 </style>

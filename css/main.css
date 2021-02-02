@@ -5,17 +5,44 @@ html {
   scroll-behavior: smooth;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
+
+  min-height: 100vh;
 }
 
 body {
   color: #111;
   margin: 0;
+  padding: 0;
   overflow-x: hidden;
-  height: 100vh;
   width: 100vw;
 }
 .center {
   position: relative;
   z-index: 5;
   text-align: center;
+}
+
+[max-width] {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+[result] {
+  margin-top: calc(270px + env(safe-area-inset-top));
+  position: relative;
+  z-index: 10;
+  background: #fff;
+  padding-top: 5px;
+  border-radius: 20px 20px 0 0;
+}
+
+h1 {
+  text-align: center;
+  font-size: 30px;
+}
+h3 {
+  font-size: 18px;
+}
+p {
+  font-size: 16px;
 }

@@ -1,17 +1,18 @@
 <template>
   <div class="slc-classifier">
-    <slc-image />
-    <div v-if="classifying">
-      <div class="center">
+    <SLCImage />
+    <template v-if="classifying">
+      <SLCMenuButton to="/" icon="cross" />
+      <div max-width result>
         <h1>Analyse läuft...</h1>
-        <slc-loader />
+        <SLCLoader />
       </div>
-    </div>
-    <div v-else>
-      <div class="center">
-        <h1>Ergebnis</h1>
-      </div>
-      <slc-result
+    </template>
+
+    <div v-else max-width result>
+      <h1>Ergebnis</h1>
+
+      <SLCResult
         v-for="(r, i) in result"
         :key="r.lclass"
         :percentage="r.probability"
@@ -22,11 +23,11 @@
 
     <div class="button" v-if="!classifying">
       <NuxtLink to="/">
-        <slc-button title="Anderes Bild verwenden" />
+        <SLCButton title="Anderes Bild verwenden" />
       </NuxtLink>
     </div>
 
-    <slc-footer />
+    <SLCFooter />
   </div>
 </template>
 <script lang="ts">
@@ -38,14 +39,16 @@ import SLCLoader from "~/components/SLC-Loader.vue";
 import SLCResult from "~/components/SLC-Result.vue";
 import { Result } from "~/static/interfaces";
 import { loadImage, predictImage } from "~/static/functions";
+import SLCMenuButton from "~/components/SLC-MenuButton.vue";
 
 @Component({
   components: {
-    "slc-image": SLCImage,
-    "slc-footer": SLCFooter,
-    "slc-loader": SLCLoader,
-    "slc-result": SLCResult,
-    "slc-button": SLCButton
+    SLCImage,
+    SLCFooter,
+    SLCLoader,
+    SLCResult,
+    SLCButton,
+    SLCMenuButton
   }
 })
 export default class SLCClassifier extends Vue {
@@ -82,27 +85,27 @@ export default class SLCClassifier extends Vue {
 <style>
 .slc-classifier .button {
   position: fixed;
-  bottom: 35px;
+  bottom: calc(10px + env(safe-area-inset-bottom));
   z-index: 10;
   left: 50%;
   transform: translateX(-50%);
 }
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: all 0.25s;
+.slc-classifier .slc-footer {
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
-.fade-move {
+.slc-classifier .slc-footer::after {
+  content: "";
   position: absolute;
+  top: 140px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #f5f5f7;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
-}
-.fade-enter {
-  transform: translateX(30px);
-}
-.fade-leave-to {
-  transform: translateX(-30px);
+
+.slc-classifier .slc-footer img {
+  height: 140px;
 }
 </style>

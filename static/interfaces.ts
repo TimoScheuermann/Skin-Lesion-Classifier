@@ -24,8 +24,7 @@ export interface Result {
   lclass: LesionClass;
 }
 
-export interface SLDescription {
+export interface SLInformation {
   name: string;
-  short: string;
-  full: string;
+  description: string;
 }

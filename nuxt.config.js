@@ -29,8 +29,9 @@ export default {
       appleStatusBarStyle: "black-translucent",
       name: "SL Classifier"
     }
+  },
+  server: {
+    host: "192.168.2.177",
+    port: 8080
   }
-  // server: {
-  //   host: "192.168.2.177"
-  // }
 };

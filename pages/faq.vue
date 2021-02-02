@@ -1,12 +1,8 @@
 <template>
   <div class="slc-faq">
-    <slc-footer />
-    <NuxtLink to="/">
-      <div class="back-button">
-        <img src="~assets/etc/back.svg" alt="" />
-      </div>
-    </NuxtLink>
-    <div class="content">
+    <SLCFooter />
+    <SLCMenuButton icon="back" to="/" />
+    <div class="content" max-width>
       <h1>FAQ</h1>
       <h3>
         Muss ich jedes mal warten bis das Modell geladen wurde, wenn ich die App
@@ -66,13 +62,13 @@
 </template>
 <script lang="ts">
 import { Vue, Component } from "nuxt-property-decorator";
-import SLCButton from "~/components/SLC-Button.vue";
 import SLCFooter from "~/components/SLC-Footer.vue";
+import SLCMenuButton from "~/components/SLC-MenuButton.vue";
 
 @Component({
   components: {
-    "slc-button": SLCButton,
-    "slc-footer": SLCFooter
+    SLCFooter,
+    SLCMenuButton
   }
 })
 export default class SLCFAQ extends Vue {}
@@ -84,15 +80,12 @@ export default class SLCFAQ extends Vue {}
 }
 .slc-faq .slc-footer img {
   transform: rotate(180deg);
-  height: 100px !important;
+  height: calc(80px + env(safe-area-inset-top)) !important;
 }
 .slc-faq .content {
-  padding: 75px 5vw;
+  padding: 75px 5vw env(safe-area-inset-top);
 }
 
-.slc-faq h1 {
-  text-align: center;
-}
 ul {
   list-style-type: none;
 }
@@ -100,17 +93,5 @@ ul li:before {
   content: "\2014";
   position: absolute;
   margin-left: -20px;
-}
-.slc-faq .back-button {
-  position: fixed;
-  top: 40px;
-  left: 5vw;
-  width: 40px;
-  height: 40px;
-  border-radius: 50px;
-}
-.slc-faq .back-button img {
-  width: inherit;
-  height: inherit;
 }
 </style>

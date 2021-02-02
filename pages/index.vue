@@ -1,6 +1,6 @@
 <template>
   <div class="slc-home">
-    <slc-batch />
+    <SLCBatch />
     <div class="center">
       <h1>Skin Lesion<br />Classifier</h1>
       <div class="trans">
@@ -14,14 +14,14 @@
               accept="image/png, image/jpeg"
             />
             <label for="file">
-              <slc-button title="Wähle ein Bild" />
+              <SLCButton title="Wähle ein Bild" />
             </label>
           </div>
         </transition>
       </div>
     </div>
-    <slc-doctor />
-    <slc-footer />
+    <SLCDoctor />
+    <SLCFooter />
   </div>
 </template>
 
@@ -34,10 +34,10 @@ import SLCFooter from "~/components/SLC-Footer.vue";
 
 @Component({
   components: {
-    "slc-footer": SLCFooter,
-    "slc-batch": SLCBatch,
-    "slc-button": SLCButton,
-    "slc-doctor": SLCDoctor
+    SLCFooter,
+    SLCBatch,
+    SLCButton,
+    SLCDoctor
   }
 })
 export default class Home extends Vue {
@@ -76,7 +76,8 @@ export default class Home extends Vue {
 .fade-move {
   position: absolute;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
   transform: translateY(20px);
 }

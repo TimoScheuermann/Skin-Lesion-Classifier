@@ -2,20 +2,18 @@
   <div class="slc-result">
     <div class="percentage" :style="'color: ' + color">{{ probability }}%</div>
     <div class="info">
-      <h3>{{ description.name }}</h3>
-      <p>
-        {{ description.short }}<br />
-        <NuxtLink :to="'details/' + lesion">
-          Mehr erfahren
-        </NuxtLink>
-      </p>
+      <h3>{{ information.name }}</h3>
+      <p>{{ information.description }}</p>
+      <NuxtLink :to="'details/' + lesion">
+        Mehr erfahren
+      </NuxtLink>
     </div>
   </div>
 </template>
 <script lang="ts">
 import { Vue, Component, Prop } from "nuxt-property-decorator";
 import { descriptions } from "~/static/descriptions";
-import { LesionClass, SLDescription } from "~/static/interfaces";
+import { LesionClass, SLInformation } from "~/static/interfaces";
 
 @Component
 export default class SLCResult extends Vue {
@@ -33,7 +31,7 @@ export default class SLCResult extends Vue {
     return "#8C7853";
   }
 
-  get description(): SLDescription {
+  get information(): SLInformation {
     return descriptions[this.lesion];
   }
 }
@@ -47,6 +45,10 @@ export default class SLCResult extends Vue {
   padding: 0 5vw;
   margin-bottom: 20px;
 }
+.slc-result:last-child {
+  padding-bottom: calc(120px + env(safe-area-inset-bottom));
+}
+
 .slc-result .percentage {
   display: grid;
   place-content: center;
@@ -59,6 +61,11 @@ export default class SLCResult extends Vue {
 }
 .slc-result .info p {
   margin: 0;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
 }
 .slc-result .info a {
   color: #08f;

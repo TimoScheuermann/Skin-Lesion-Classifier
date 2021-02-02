@@ -13,7 +13,8 @@ export default class SLCFooter extends Vue {}
 <style>
 .slc-footer {
   position: fixed;
-  bottom: 0px;
+  bottom: -10px;
+  z-index: 20;
 }
 .slc-footer img {
   height: 150px;

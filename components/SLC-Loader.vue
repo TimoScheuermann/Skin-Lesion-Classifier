@@ -103,6 +103,11 @@ export default class SLCLoader extends Vue {}
   }
 }
 
+.slc-loader {
+  width: fit-content;
+  margin: 0 auto;
+}
+
 .slc-loader svg {
   animation: spin 3s ease-in-out 0s infinite;
 }
