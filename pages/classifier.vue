@@ -88,6 +88,7 @@ export default class SLCClassifier extends Vue {
   bottom: calc(10px + env(safe-area-inset-bottom));
   z-index: 10;
   left: 50%;
+  z-index: 100;
   transform: translateX(-50%);
 }
 
