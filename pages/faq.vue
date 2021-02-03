@@ -79,10 +79,12 @@ export default class SLCFAQ extends Vue {}
   bottom: unset;
 }
 .slc-faq .slc-footer::before {
-  top: -40px;
+  content: "";
+  position: absolute;
+  top: -50px;
   left: 0;
   right: 0;
-  height: 41px;
+  height: 51px;
   background: #f5f5f7;
 }
 
