@@ -53,6 +53,8 @@ export default {
     backgroundColor: "#f5f5f7",
     theme_color: "#f5f5f7",
     themeColor: "#f5f5f7",
+    display: "fullscreen",
+    name: "SL Classifier",
     display: "fullscreen"
   }
   // server: {
