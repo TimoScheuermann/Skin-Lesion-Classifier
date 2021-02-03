@@ -98,7 +98,7 @@ export default class SLCClassifier extends Vue {
 <style>
 .slc-classifier .button {
   position: fixed;
-  bottom: calc(10px + env(safe-area-inset-bottom));
+  bottom: calc(30px + env(safe-area-inset-bottom));
   z-index: 10;
   left: 50%;
   z-index: 100;

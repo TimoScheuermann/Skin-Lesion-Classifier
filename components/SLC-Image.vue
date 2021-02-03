@@ -24,9 +24,9 @@ export default class SLCImage extends Vue {
 
 <style>
 .slc-image {
-  height: calc(300px + env(safe-area-inset-top));
+  height: calc(340px + env(safe-area-inset-top));
   position: fixed;
-  top: 0;
+  top: -40px;
   left: 0;
   right: 0;
   z-index: 5;

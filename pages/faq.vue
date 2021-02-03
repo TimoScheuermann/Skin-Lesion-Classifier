@@ -78,6 +78,14 @@ export default class SLCFAQ extends Vue {}
   top: 0px;
   bottom: unset;
 }
+.slc-faq .slc-footer::before {
+  top: -40px;
+  left: 0;
+  right: 0;
+  height: 41px;
+  background: #f5f5f7;
+}
+
 .slc-faq .slc-footer img {
   transform: rotate(180deg);
   height: calc(80px + env(safe-area-inset-top)) !important;
