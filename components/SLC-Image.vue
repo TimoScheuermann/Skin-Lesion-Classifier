@@ -10,10 +10,12 @@ import { Vue, Component } from "nuxt-property-decorator";
 
 @Component
 export default class SLCImage extends Vue {
+  // Returns the src of the inserted image
   get src(): string {
     return this.$store.getters.src;
   }
 
+  // Returns the css style to display the image
   get style(): string {
     return `background-image: url(${this.src})`;
   }

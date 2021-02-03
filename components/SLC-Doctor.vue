@@ -157,7 +157,7 @@ export default class SLCDoctor extends Vue {}
   bottom: -3.5px;
   left: calc(50% - 50px);
   transform: translateX(-50%);
-  z-index: 10;
+  z-index: 100;
 }
 text {
   cursor: pointer;

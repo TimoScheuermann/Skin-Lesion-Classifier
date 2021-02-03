@@ -21,16 +21,19 @@ export default class SLCResult extends Vue {
   @Prop() lesion!: LesionClass;
   @Prop() position!: number;
 
+  // Rundet die Wahrscheinlichkeit auf 2 Stellen nach dem Komma
   get probability(): number {
     return Math.round(this.percentage * 1000) / 10;
   }
 
+  // Returns the percentage color #(1-3)
   get color(): string {
     if (this.position === 1) return "#FFD700";
     if (this.position === 2) return "#C9CAD9";
     return "#8C7853";
   }
 
+  // Returns the information to a given lesion
   get information(): SLInformation {
     return descriptions[this.lesion];
   }

@@ -27,7 +27,19 @@ export default {
     meta: {
       mobileAppIOS: true,
       appleStatusBarStyle: "black-translucent",
-      name: "SL Classifier"
+      name: "SL Classifier",
+      author: "Timo Scheuermann",
+      description:
+        "Skin Lesion Classifier, a Convolutional Neural Network based lesion classifier created for my Bachelor Thesis",
+      nativeUI: true,
+      ogHost: "https://slc.timos.design",
+      theme_color: "#f5f5f7"
+    },
+    icon: {
+      source: "[srcDir]/[staticDir]/pwa/icon.png"
+    },
+    manifest: {
+      background_color: "#f5f5f7"
     }
   }
   // server: {

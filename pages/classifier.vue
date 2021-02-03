@@ -52,30 +52,43 @@ import SLCMenuButton from "~/components/SLC-MenuButton.vue";
   }
 })
 export default class SLCClassifier extends Vue {
+  // Gets called before the view is beeing rendered
   beforeMount() {
+    // If no image is inserted or the modle hasnt finished loading yet, return back to home
     if (this.src.length === 0 || !this.$store.getters.modelLoaded) {
       this.$router.push({ name: "index" });
     }
   }
+
+  // Image is inserted and model is loaded
   async mounted() {
+    // Model hasnt predicted the lesion yet
     if (this.result.length === 0) {
-      const image = await loadImage(this.src);
+      // Load base64 encoded src into HTMLImageElement
+      const image: HTMLImageElement = await loadImage(this.src);
+
+      // Run model prediction (input: image itself, our loaded model)
       const result: Result[] = await predictImage(
         image,
         this.$store.getters.model
       );
+
+      // Store prediction in store
       this.$store.commit("updateResult", result);
     }
   }
 
+  // returns the base64 encoded image
   get src(): string {
     return this.$store.getters.src || "";
   }
 
+  // return true if prediction is completed
   get classifying(): boolean {
     return this.result.length === 0;
   }
 
+  // returns the stored prediction
   get result(): Result[] {
     return this.$store.getters.result;
   }

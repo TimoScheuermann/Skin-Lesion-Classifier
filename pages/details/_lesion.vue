@@ -4,8 +4,8 @@
       <SLCImage />
       <SLCMenuButton icon="back" to="/classifier" />
 
-      <h1>{{ description.name }}</h1>
-      <p>{{ description.description }}</p>
+      <h1>{{ information.name }}</h1>
+      <p>{{ information.description }}</p>
     </div>
 
     <SLCFooter />
@@ -27,11 +27,13 @@ import { LesionClass, SLInformation } from "~/static/interfaces";
   }
 })
 export default class SLCDetails extends Vue {
+  // Returns the lesion from the given url paramter
   get lesion(): LesionClass {
     return this.$route.params.lesion as LesionClass;
   }
 
-  get description(): SLInformation {
+  // Returns the information of the given lesion
+  get information(): SLInformation {
     return descriptions[this.lesion];
   }
 }

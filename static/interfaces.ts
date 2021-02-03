@@ -8,6 +8,7 @@ export type LesionClass =
   | "NV"
   | "VASC";
 
+// this order is equivalent to the order our model has (compare: Google Colab model training process)
 export const lesionClasses = [
   "AKIEC",
   "BCC",
