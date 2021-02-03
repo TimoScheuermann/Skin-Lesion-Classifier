@@ -1,6 +1,6 @@
 <template>
   <div class="slc-footer">
-    <img src="~/assets/etc/footer.svg" alt="" />
+    <img src="~assets/footer.svg" alt="" />
   </div>
 </template>
 <script lang="ts">

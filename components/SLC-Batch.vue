@@ -1,6 +1,6 @@
 <template>
   <div class="slc-batch">
-    <img src="~/assets/etc/batch.svg" alt="" />
+    <img src="~assets/batch.svg" alt="" />
   </div>
 </template>
 <script lang="ts">

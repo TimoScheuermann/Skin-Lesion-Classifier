@@ -1,7 +1,7 @@
 <template>
   <NuxtLink class="slc-menu-button" v-if="to && icon" :to="to">
-    <img v-if="icon === 'cross'" src="~assets/etc/cross.svg" alt="" />
-    <img v-else-if="icon === 'back'" src="~assets/etc/back.svg" alt="" />
+    <img v-if="icon === 'cross'" src="~assets/cross.svg" alt="" />
+    <img v-else-if="icon === 'back'" src="~assets/back.svg" alt="" />
   </NuxtLink>
 </template>
 <script lang="ts">
