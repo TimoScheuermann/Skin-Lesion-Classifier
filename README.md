@@ -201,4 +201,17 @@ Aufgrund des Speicherns ist es möglich, die /classifier Seite zu verlassen, um 
 
 ___
 ## Learnings
-TODO
+
+- Ich habe es leider nicht geschafft TensorFlow.js mit Vue.js zu verwenden. Tensorflow benötigt bestimmte Ressourcen, auf die man mit Vue keinen Zugriff hat. Dies liegt sehr wahrscheinlich daran, das Vue beim Client gerendert und alles verarbeitet wird und Nuxt.js das ganze Serverseitig handhabt. Deshalb musste für diesen Prototypen mit Nuxt.js gearbeitet werden.
+
+- Der localstorage kann das Modell nicht speichern, da es zu großt ist. Die indexeddb jedoch kann dies. Hierdurch wird das n-te Laden des Modells sehr stark beschleunigt.
+
+- Der PWA Support von Nuxt.js hat seine Vor- und Nachteile.
+  - Zu den Vorteilen gehört:
+    - Automatische Konvertierung des Icons in die benötigten größen
+    - Schnelles Erstellen einer PWA, die Offline sehr gut funktioniert
+  - Zu den Nachteilen gehört:
+    - Die automatisch erstellten Icons haben keinen "erweiterten" Hintergrund. Das bedeutet, dass die größe im Allgemeinen zwar passt, bei Splash-Screens für Handys aber bspw. wird das Bild auf die benötigte Breite skaliert, die restliche Fläche (oberr- und unterhalb) des Bildes bleiben jedoch schwarz. Diese Farbe konnte bis zum aktuellen Zeitpunkt nicht geändert/festgelegt werden
+    - Der Name der Anwendung, welche standardmäßig aus der package.json geladen wird, in der nuxt.config.js jedoch eingentlich geändert werden kann wurde nicht übernommen. Hierdurch wird aktuell noch der name der package.json bei der Installation "voreingetragen". Da in der package.json der name nur klein und ohne Leerzeichen geschrieben werden darf, verursacht dies einen unschönen Namen :(
+
+- Da ich persönlich noch nicht all zu viel mit Python und ML gearbeitet habe, konnte ich keinen eleganteren Weg auf die schnelle finden, um weitere Datensätze für das Training zu verwenden. Deshalb habe ich einen neuen Datensatz auf Kaggle veröffentlicht, welcher zum einen auf den alten Datensatz in der Excel-Datei verweist und zum anderen auf die zusätzlichen Datensätze. Hier konnte ich aufgrund des gegeben Bearbeitungszeitraums nichts besseres auf die Schnelle bereitstellen.
